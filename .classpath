@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="build/.apt_generated"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/Sdk/WindowsSDK/platforms/android-10/android.jar"/>
+	<classpathentry kind="lib" path="D:/Sdk/WindowsSDK/add-ons/addon-google_apis-google-10/libs/maps.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/AppData/Roaming/Titanium/mobilesdk/win32/3.1.1.GA/android/titanium.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/AppData/Roaming/Titanium/mobilesdk/win32/3.1.1.GA/android/kroll-common.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/AppData/Roaming/Titanium/mobilesdk/win32/3.1.1.GA/android/kroll-apt.jar"/>
+	<classpathentry kind="lib" path="lib/universal-image-loader-1.8.0.jar"/>
+	<classpathentry kind="lib" path="/Users/anubavam/android-sdks/platforms/android-10/android.jar"/>
+	<classpathentry kind="lib" path="/Users/anubavam/Library/Application Support/Titanium/mobilesdk/osx/3.1.1.GA/android/titanium.jar"/>
+	<classpathentry kind="lib" path="/Users/anubavam/Library/Application Support/Titanium/mobilesdk/osx/3.1.1.GA/android/kroll-common.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
