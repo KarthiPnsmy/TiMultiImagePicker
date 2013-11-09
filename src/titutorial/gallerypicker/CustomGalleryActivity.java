@@ -44,7 +44,7 @@ public class CustomGalleryActivity extends Activity {
 	String cancelButtonText = null;
 	String titleText = null;
 	String errorMessageText = null;
-	Integer limit = -1;
+	Integer limit = 5;
     private ImageLoader imageLoader;
 
     @Override

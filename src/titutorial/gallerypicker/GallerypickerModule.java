@@ -44,7 +44,7 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 	@Kroll.constant public static final int MULTIPLE_SELECTION = 200;
 	@Kroll.constant public static final int SINGLE_SELECTION = 100;
 	Integer selectionType = MULTIPLE_SELECTION;
-	Integer limit = 0;
+	Integer limit = 5;
 	String cancelButtonText = null;
 	String okButtonText = null;
 	String titleText = null;
