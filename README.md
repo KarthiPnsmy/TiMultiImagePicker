@@ -2,8 +2,8 @@
 
 ## Description
 
-Titanium gallery picker module for Android to select multiple images from Gallery. This module developed from existing 
-Android open source library MultipleImagePick. Also this module uses Universal image loader library for asynchronous loading and caching. 
+Titanium Android module for select multiple images from Gallery. This module developed from existing 
+Android open source library **[MultipleImagePick](https://github.com/luminousman/MultipleImagePick)**. Also this module uses **[Universal image loader](https://github.com/nostra13/Android-Universal-Image-Loader)** library for asynchronous loading and caching. 
 
 ## Features
 * Select multiple images from Gallery
@@ -33,7 +33,7 @@ Method to open custom gallery with multiple image select option.
 | cancelButtonTitle  | Cancel button title text| Cancel |
 | doneButtonTitle  | Done button title text | Done |
 | title | Custom gallery window title| Gallery |
-| errorMessage 	| Message used to show, if maximum image selection reached | Max limit reached |
+| errorMessage 	| Message used to show, if maximum image selection limit reached | Max limit reached |
 | limit	| maximum image selection limit | 5 |
 | success 	| callback function to handle success response | - |
 | error 	| callback function to handle error response | - |
@@ -50,7 +50,9 @@ The lower resolution version should match the size of the UI component that disp
 An image with a higher resolution does not provide any visible benefit, but still takes up precious 
 memory and incurs additional performance overhead due to additional on the fly scaling.
 
-This method used to decode large bitmaps without exceeding the per application memory limit by loading a smaller subsampled version in memory
+**This method used to decode large bitmaps without exceeding the per application memory limit by loading a smaller subsampled version in memory**
+
+Reference: [Android guild lines](http://developer.android.com/training/displaying-bitmaps/load-bitmap.html)
 
 **Parameters**
 
@@ -70,7 +72,6 @@ gallerypicker.openGallery({
 	limit : 10,
 	success : function(e) {
 		Ti.API.info("response is => " + JSON.stringify(e));
-
 		var imgArray = e.filePath.split(",");
 
 		for(var i=0; i<imgArray.length; i++){
@@ -88,7 +89,6 @@ gallerypicker.openGallery({
 		alert("error " + JSON.stringify(e));
 	}
 });
-
 ```
 refer example/app.js for more info
 
@@ -99,9 +99,6 @@ Karthi Ponnusamy - karthi.nkl@gmail.com
 ## License
 
 Copyright (c) 2013 titaniumtutorial.com
-
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
