@@ -31,15 +31,15 @@ Method to open custom gallery with multiple image select option.
 
 **Parameters**
 
-| Property    	| Description | Default |
-| -------------	| ----------- | ------- |
-| cancelButtonTitle  | Cancel button title text| Cancel |
-| doneButtonTitle  | Done button title text | Done |
-| title | Custom gallery window title| Gallery |
-| errorMessage 	| Message used to show, if maximum image selection limit reached | Max limit reached |
-| limit	| maximum image selection limit | 5 |
-| success 	| callback function to handle success response | - |
-| error 	| callback function to handle error response | - |
+| Property    	| Description | Default | Is Required? |
+| -------------	| ----------- | ------- | ------------ |
+| cancelButtonTitle  | Cancel button title text| Cancel | No |
+| doneButtonTitle  | Done button title text | Done | No |
+| title | Custom gallery window title| Gallery | No |
+| errorMessage 	| Message used to show, if maximum image selection limit reached | Max limit reached | No |
+| limit	| maximum image selection limit | 5 | No |
+| success | callback function to handle success response | - | Yes |
+| error | callback function to handle error response | - | Yes |
 
 ### decodeBitmapResource()
 
@@ -59,11 +59,11 @@ Reference: [Android guild lines](http://developer.android.com/training/displayin
 
 **Parameters**
 
-| Property    	| Description |
-| -------------	| ----------- |
-| path  | Input image file path|
-| width  | Required thumbnail image width|
-| height | Required thumbnail image height|
+| Property    	| Description | Is Required? |
+| -------------	| ----------- | ------------ |
+| path  | Input image file path| Yes |
+| width  | Required thumbnail image width| Yes |
+| height | Required thumbnail image height| Yes |
 
 ## Usage
 ```javascript
