@@ -31,15 +31,15 @@ Method to open custom gallery with multiple image select option.
 
 **Parameters**
 
-| Property    	| Description | Default | Is Required? |
-| -------------	| ----------- | ------- | ------------ |
-| cancelButtonTitle  | Cancel button title text| Cancel | No |
-| doneButtonTitle  | Done button title text | Done | No |
-| title | Custom gallery window title| Gallery | No |
-| errorMessage 	| Message used to show, if maximum image selection limit reached | Max limit reached | No |
-| limit	| maximum image selection limit | 5 | No |
-| success | callback function to handle success response | - | Yes |
-| error | callback function to handle error response | - | Yes |
+| Property    	| Description | Default | Type | Is Required? |
+| -------------	| ----------- | ------- | ---- | ------------ |
+| cancelButtonTitle  | Cancel button title text| Cancel | String | No |
+| doneButtonTitle  | Done button title text | Done | String | No |
+| title | Custom gallery window title| Gallery | String | No |
+| errorMessage 	| Message used to show, if maximum image selection limit reached | Max limit reached | String | No |
+| limit	| maximum image selection limit | 5 | Integer | No |
+| success | callback function to handle success response | - | Function | Yes |
+| error | callback function to handle error response | - | Function | Yes |
 
 ### decodeBitmapResource()
 
@@ -59,11 +59,11 @@ Reference: [Android guild lines](http://developer.android.com/training/displayin
 
 **Parameters**
 
-| Property    	| Description | Is Required? |
-| -------------	| ----------- | ------------ |
-| path  | Input image file path| Yes |
-| width  | Required thumbnail image width| Yes |
-| height | Required thumbnail image height| Yes |
+| Property    	| Description | Type | Is Required? |
+| -------------	| ----------- | ---- | ------------ |
+| path  | Input image file path | String | Yes |
+| width  | Required thumbnail image width | Integer | Yes |
+| height | Required thumbnail image height | Integer | Yes |
 
 ## Usage
 ```javascript
