@@ -5,7 +5,7 @@
 Titanium Android module for select multiple images from Gallery. This module developed from existing 
 Android open source library **[MultipleImagePick](https://github.com/luminousman/MultipleImagePick)**. Also this module uses **[Universal image loader](https://github.com/nostra13/Android-Universal-Image-Loader)** library for asynchronous loading and caching. 
 
-![Gallery Picker Screenshot](https://raw.github.com/luminousman/MultipleImagePick/master/2.png "Gallery Picker Screen")
+![Gallery Picker Screenshot](https://github.com/railskarthi/GalleryPicker/blob/master/screen1.jpg "Gallery Picker Screen")
 
 
 ## Features
