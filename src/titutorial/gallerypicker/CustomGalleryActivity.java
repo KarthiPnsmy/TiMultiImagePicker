@@ -56,7 +56,6 @@ public class CustomGalleryActivity extends Activity {
 		setContentView(Utility.resId_galleryLayout);
 
 		action = getIntent().getAction();
-		System.out.println("@@## action = "+action);
 		Bundle extras = getIntent().getExtras();
 		if(extras != null){
 			cancelButtonText = extras.getString("cancelButtonText");
@@ -66,7 +65,6 @@ public class CustomGalleryActivity extends Activity {
 			limit = extras.getInt("limit", 5);
 			action = extras.getString("action");
 		}
-		Log.d("@@##", "okButtonText = "+okButtonText);
 
 		if (action == null) {
 			finish();
@@ -170,7 +168,6 @@ public class CustomGalleryActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			System.out.println("@@## ok button clicked ");
 			ArrayList<CustomGallery> selected = adapter.getSelected();
 
 			String[] allPath = new String[selected.size()];
@@ -181,15 +178,12 @@ public class CustomGalleryActivity extends Activity {
 			//clear adapter
 			adapter.clear();
 			adapter.clearCache();
-			System.out.println("@@## adapter cleared ");
 			Intent data = new Intent().putExtra("all_path", allPath);
-			System.out.println("@@## setResult called ");
 			try{
 				setResult(RESULT_OK, data);
 			} catch (Exception e){
 				e.printStackTrace();
 			}
-			System.out.println("@@## finishing gallery activity ");
 			finish();
 
 		}
@@ -239,7 +233,6 @@ public class CustomGalleryActivity extends Activity {
 			Cursor imagecursor = managedQuery(
 					MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns,
 					null, null, orderBy);
-			System.out.println("@@## imagecursor.getCount(): " + imagecursor.getCount());
 			if (imagecursor != null && imagecursor.getCount() > 0) {
 
 				while (imagecursor.moveToNext()) {
@@ -250,8 +243,6 @@ public class CustomGalleryActivity extends Activity {
 					int thumbColumnIndex = imagecursor.getColumnIndex(MediaStore.Images.Thumbnails.DATA);
 					item.sdcardPath = imagecursor.getString(dataColumnIndex);
 					String thumbPath = imagecursor.getString(thumbColumnIndex);
-					//System.out.println("@@## imagePath = " + imagecursor.getString(dataColumnIndex));
-					//System.out.println("@@## thumbPath = " + thumbPath);
 					galleryList.add(item);
 				}
 			}
@@ -266,7 +257,6 @@ public class CustomGalleryActivity extends Activity {
 	
 	@Override
 	public void onBackPressed() {
-		System.out.println("@@## back btn pressed");
 		adapter.clear();
 		adapter.clearCache();
 		setResult(RESULT_CANCELED);

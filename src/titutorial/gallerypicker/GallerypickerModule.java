@@ -65,14 +65,12 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 	}
 
 	private void sendSuccessEvent(String filepath) {
-		System.out.println("@@## came into sendSuccessEvent");
 		if (successCallback != null) {
 			HashMap<String, String> event = new HashMap<String, String>();
 			event.put("success", "true");
 			event.put("filePath", filepath);
 
 			// Fire an event directly to the specified listener (callback)
-			System.out.println("@@## successCallback fired");
 			successCallback.call(getKrollObject(), event);
 		}
 	}
@@ -168,15 +166,13 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 	
 	//@Override
 	public void onResult(Activity act,int requestCode, int resultCode, Intent data) {
-		System.out.println("@@## came into onResult ");
+		//System.out.println("@@## came into onResult , resultCode = "+resultCode);
 		if (resultCode == Activity.RESULT_CANCELED){
-			System.out.println("@@## came into cancel ");
 			sendCancelEvent();		
 		} else if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
 			String single_path = data.getStringExtra("single_path");
 			sendSuccessEvent(single_path);
 		} else if (requestCode == 200 && resultCode == Activity.RESULT_OK) {
-			System.out.println("@@## came into onResult requestCode 200");
 			String[] all_path = data.getStringArrayExtra("all_path");
 
 			ArrayList<CustomGallery> dataT = new ArrayList<CustomGallery>();
@@ -191,17 +187,16 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 				} else {
 					outputString = string;
 				}
-				System.out.println("@@## string = "+string);
 				dataT.add(item);
 			}
-			System.out.println("@@## calling sendSuccessEvent with outputString = "+outputString);
+			//System.out.println("@@## calling sendSuccessEvent with outputString = "+outputString);
 			sendSuccessEvent(outputString);
 		}
 	}
 
 	@Override
 	public void onError(Activity activity, int requestCode, Exception e) {
-		System.out.println("@@## came into onError ");
+		//System.out.println("@@## came into onError ");
 		sendErrorEvent(e.getMessage());
 	}
 	

@@ -4,22 +4,18 @@ var win = Ti.UI.createWindow({
 	layout : "vertical"
 });
 
-// TODO: write your module tests here
 var gallerypicker = require('titutorial.gallerypicker');
 Ti.API.info("module is => " + gallerypicker);
 
-// Create a Button.
 var open = Ti.UI.createButton({
 	title : 'open',
 	height : '50dp',
 	width : '150dp',
 	top : '40dp'
 });
-
-// Add to the parent view.
 win.add(open);
 
-var scrollview = Ti.UI.createScrollView({});
+var scrollview = Ti.UI.createScrollView();
 win.add(scrollview);
 
 var imageHolder = Ti.UI.createView({
@@ -29,7 +25,6 @@ var imageHolder = Ti.UI.createView({
 });
 scrollview.add(imageHolder);
 
-// Listen for click events.
 open.addEventListener('click', function() {
 	gallerypicker.openGallery({
 		cancelButtonTitle : "Cancel",
