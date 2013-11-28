@@ -18,7 +18,7 @@
                 android:id="@+id/imgQueue"
                 android:layout_width="@dimen/photo_width"
                 android:layout_height="@dimen/photo_height"
-                android:contentDescription="@string/app_name"
+                android:contentDescription=""
                 android:scaleType="centerCrop"
                 android:src="@drawable/no_media" />
         </FrameLayout>
@@ -31,7 +31,7 @@
             android:layout_marginRight="2dp"
             android:layout_marginTop="2dp"
             android:background="@drawable/on_focus_checkbox"
-            android:contentDescription="@string/app_name"
+            android:contentDescription=""
             android:gravity="center"
             android:scaleType="center"
             android:visibility="gone" />

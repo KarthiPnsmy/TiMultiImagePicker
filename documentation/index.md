@@ -125,7 +125,7 @@ Reference: [Android guild lines](http://developer.android.com/training/displayin
 
 ## Usage
 
-<pre>
+<code>
 gallerypicker.openGallery({
     cancelButtonTitle: "Cancel",
     doneButtonTitle: "Okay",
@@ -150,7 +150,7 @@ gallerypicker.openGallery({
         alert("error " + JSON.stringify(e));
     }
 });
-</pre>
+</code>
 
 refer example/app.js for more info
 

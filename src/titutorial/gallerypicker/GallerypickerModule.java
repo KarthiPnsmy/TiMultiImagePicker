@@ -38,6 +38,7 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 	protected int requestCode;
 	private KrollFunction successCallback = null;
 	private KrollFunction errorCallback = null;
+	private KrollFunction cancelCallback = null;
 	
 	// You can define constants with @Kroll.constant, for example:
 	// @Kroll.constant public static final String EXTERNAL_NAME = value;
@@ -64,13 +65,25 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 	}
 
 	private void sendSuccessEvent(String filepath) {
+		System.out.println("@@## came into sendSuccessEvent");
 		if (successCallback != null) {
 			HashMap<String, String> event = new HashMap<String, String>();
 			event.put("success", "true");
 			event.put("filePath", filepath);
 
 			// Fire an event directly to the specified listener (callback)
+			System.out.println("@@## successCallback fired");
 			successCallback.call(getKrollObject(), event);
+		}
+	}
+
+	private void sendCancelEvent() {
+		if (cancelCallback != null) {
+			HashMap<String, String> event = new HashMap<String, String>();
+			event.put("message", "Cancelled");
+
+			// Fire an event directly to the specified listener (callback)
+			cancelCallback.call(getKrollObject(), event);
 		}
 	}
 
@@ -83,8 +96,7 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 			errorCallback.call(getKrollObject(), event);
 		}
 	}
-
-	@Kroll.method
+	
 	public void registerCallbacks(HashMap args) {
 		Object callback;
 
@@ -95,7 +107,14 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 				successCallback = (KrollFunction) callback;
 			}
 		}
-
+		
+		if (args.containsKey("cancel")) {
+			callback = args.get("cancel");
+			if (callback instanceof KrollFunction) {
+				cancelCallback = (KrollFunction) callback;
+			}
+		}
+		
 		if (args.containsKey("error")) {
 			callback = args.get("error");
 			if (callback instanceof KrollFunction) {
@@ -111,9 +130,12 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 		KrollDict options = new KrollDict(args);
 		registerCallbacks(args);
 		
-		Activity activity = this.getActivity();
-		TiActivitySupport support = (TiActivitySupport) activity;
-		Intent i = new Intent(Action.ACTION_MULTIPLE_PICK);
+		//Activity activity = TiApplication.getAppRootOrCurrentActivity();
+		Activity activity = getTiContext().getTiApp().getCurrentActivity();
+        TiActivitySupport support = (TiActivitySupport) activity;
+        
+		//Intent i = new Intent(Action.ACTION_MULTIPLE_PICK);
+		Intent i = new Intent(activity, CustomGalleryActivity.class);
 		
 		cancelButtonText = (String) options.get("cancelButtonTitle");
 		okButtonText = (String) options.get("doneButtonTitle");
@@ -135,23 +157,30 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 
 		errorMessageText = (errorMessageText == null ? "Max limit reached" : errorMessageText);
 		i.putExtra("errorMessageText", errorMessageText);
+		i.putExtra("action", "luminous.ACTION_MULTIPLE_PICK");
 		
 		limit = (limit == null ? 0 : limit);
 		i.putExtra("limit", limit);
 		
+		//support.launchActivityForResult(i, selectionType, this);
 		support.launchActivityForResult(i, selectionType, this);
 	}
 	
+	//@Override
 	public void onResult(Activity act,int requestCode, int resultCode, Intent data) {
-		if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+		System.out.println("@@## came into onResult ");
+		if (resultCode == Activity.RESULT_CANCELED){
+			System.out.println("@@## came into cancel ");
+			sendCancelEvent();		
+		} else if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
 			String single_path = data.getStringExtra("single_path");
 			sendSuccessEvent(single_path);
 		} else if (requestCode == 200 && resultCode == Activity.RESULT_OK) {
+			System.out.println("@@## came into onResult requestCode 200");
 			String[] all_path = data.getStringArrayExtra("all_path");
 
 			ArrayList<CustomGallery> dataT = new ArrayList<CustomGallery>();
 			Activity activity = TiApplication.getAppRootOrCurrentActivity();
-			//Toast.makeText(activity, "Selected Images: "+all_path.toString(), Toast.LENGTH_SHORT).show();
 			String outputString = "";
 			for (String string : all_path) {
 				CustomGallery item = new CustomGallery();
@@ -165,13 +194,14 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 				System.out.println("@@## string = "+string);
 				dataT.add(item);
 			}
+			System.out.println("@@## calling sendSuccessEvent with outputString = "+outputString);
 			sendSuccessEvent(outputString);
 		}
 	}
 
-
 	@Override
-	public void onError(Activity arg0, int arg1, Exception e) {
+	public void onError(Activity activity, int requestCode, Exception e) {
+		System.out.println("@@## came into onError ");
 		sendErrorEvent(e.getMessage());
 	}
 	

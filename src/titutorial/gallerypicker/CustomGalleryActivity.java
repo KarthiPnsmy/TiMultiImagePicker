@@ -63,7 +63,8 @@ public class CustomGalleryActivity extends Activity {
 			okButtonText = extras.getString("okButtonText");
 			titleText = extras.getString("titleText");
 			errorMessageText = extras.getString("errorMessageText");
-			limit = extras.getInt("limit", -1);
+			limit = extras.getInt("limit", 5);
+			action = extras.getString("action");
 		}
 		Log.d("@@##", "okButtonText = "+okButtonText);
 
@@ -169,6 +170,7 @@ public class CustomGalleryActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
+			System.out.println("@@## ok button clicked ");
 			ArrayList<CustomGallery> selected = adapter.getSelected();
 
 			String[] allPath = new String[selected.size()];
@@ -179,8 +181,15 @@ public class CustomGalleryActivity extends Activity {
 			//clear adapter
 			adapter.clear();
 			adapter.clearCache();
+			System.out.println("@@## adapter cleared ");
 			Intent data = new Intent().putExtra("all_path", allPath);
-			setResult(RESULT_OK, data);
+			System.out.println("@@## setResult called ");
+			try{
+				setResult(RESULT_OK, data);
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+			System.out.println("@@## finishing gallery activity ");
 			finish();
 
 		}
@@ -193,6 +202,7 @@ public class CustomGalleryActivity extends Activity {
 			//clear adapter
 			adapter.clear();
 			adapter.clearCache();
+			setResult(RESULT_CANCELED);
 			finish();
 		}
 	};
@@ -252,6 +262,15 @@ public class CustomGalleryActivity extends Activity {
         // show newest photo at beginning of the list
 		Collections.reverse(galleryList);
         return galleryList;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		System.out.println("@@## back btn pressed");
+		adapter.clear();
+		adapter.clearCache();
+		setResult(RESULT_CANCELED);
+		super.onBackPressed();
 	}
 
 }
