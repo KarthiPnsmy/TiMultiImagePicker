@@ -1,11 +1,11 @@
-# GalleryPicker Module
+# TiMultiImagePicker Module
 
 ## Description
 
 Titanium Android module for select multiple images from Gallery. This module developed from existing 
 Android open source library **[MultipleImagePick](https://github.com/luminousman/MultipleImagePick)**. Also this module uses **[Universal image loader](https://github.com/nostra13/Android-Universal-Image-Loader)** library for asynchronous loading and caching. 
 
-![Gallery Picker Screenshot](https://github.com/railskarthi/GalleryPicker/blob/master/screens/screenshot.png?raw=true "Gallery Picker Screenshot")
+![TiMultiImagePicker Screenshot](https://github.com/railskarthi/TiMultiImagePicker/blob/master/screens/screenshot.png?raw=true "TiMultiImagePicker Screenshot")
 
 
 
@@ -16,7 +16,7 @@ Android open source library **[MultipleImagePick](https://github.com/luminousman
 * Method for scale down the bitmap
 * Success and error callback methods
 
-## Accessing the GalleryPicker Module
+## Accessing the TiMultiImagePicker Module
 
 To access this module from JavaScript, you would do the following:
 ```javascript
@@ -95,6 +95,12 @@ gallerypicker.openGallery({
 });
 ```
 refer example/app.js for more info
+
+## Using Custom Resources
+
+If you want to use custom resource in your App you can override default resource. For that you have to place your custom resource inside **app_root/platform/android/res** or **app_root/modules/android/titutorial.gallerypicker/0.1/platform/android/res** in the same name.
+
+For example, if you want to override default image in Gallery item you have to override your custom image with name of **no_media.png**
 
 ## Author
 
