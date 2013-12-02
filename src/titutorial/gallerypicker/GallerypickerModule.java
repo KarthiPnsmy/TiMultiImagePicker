@@ -129,7 +129,8 @@ public class GallerypickerModule extends KrollModule implements TiActivityResult
 		registerCallbacks(args);
 		
 		//Activity activity = TiApplication.getAppRootOrCurrentActivity();
-		Activity activity = getTiContext().getTiApp().getCurrentActivity();
+		//Activity activity = getTiContext().getTiApp().getCurrentActivity();
+		Activity activity = TiApplication.getAppCurrentActivity();
         TiActivitySupport support = (TiActivitySupport) activity;
         
 		//Intent i = new Intent(Action.ACTION_MULTIPLE_PICK);
