@@ -80,6 +80,12 @@ Method to open custom gallery with multiple image select option.
 <td>-</td>
 <td>Yes</td>
 </tr>
+<tr>
+<td>cancel</td>
+<td>callback function to handle cancel response</td>
+<td>-</td>
+<td>No</td>
+</tr>
 </table> 
 
 ### decodeBitmapResource()
@@ -148,6 +154,9 @@ gallerypicker.openGallery({
     },
     error: function (e) {
         alert("error " + JSON.stringify(e));
+    },
+    cancel : function(e) {
+        alert("cancel " + JSON.stringify(e));
     }
 });
 </code>

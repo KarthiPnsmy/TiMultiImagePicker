@@ -41,6 +41,7 @@ Method to open custom gallery with multiple image select option.
 | limit	| maximum image selection limit | 5 | Integer | No |
 | success | callback function to handle success response | - | Function | Yes |
 | error | callback function to handle error response | - | Function | Yes |
+| cancel | callback function to handle cancel response | - | Function | No |
 
 ### decodeBitmapResource()
 
@@ -91,6 +92,9 @@ gallerypicker.openGallery({
 	},
 	error : function(e) {
 		alert("error " + JSON.stringify(e));
+	},
+	cancel : function(e) {
+		alert("cancel " + JSON.stringify(e));
 	}
 });
 ```
