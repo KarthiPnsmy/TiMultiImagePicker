@@ -13,6 +13,6 @@ copyright: Copyright (c) 2013 by Your Company
 # these should not be edited
 name: gallerypicker
 moduleid: titutorial.gallerypicker
-guid: 5909fa83-f271-4a79-9711-80ad6c2de682
+guid: 5909fa83-f271-4a79-9711-80ad6c2de683
 platform: android
 minsdk: 3.0.0.GA
