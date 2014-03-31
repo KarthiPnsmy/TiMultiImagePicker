@@ -22,10 +22,11 @@
             android:layout_height="fill_parent"
             android:columnWidth="100dip"
             android:gravity="center"
-            android:horizontalSpacing="4dip"
+            android:horizontalSpacing="0dip"
             android:numColumns="auto_fit"
             android:stretchMode="columnWidth"
-            android:verticalSpacing="2dip"
+            android:verticalSpacing="0dip"
+            android:listSelector="@null"
             tools:listitem="@layout/gallery_item" />
 
         <ImageView
@@ -33,7 +34,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:contentDescription=""
             android:src="@drawable/no_media" />
     </FrameLayout>
 

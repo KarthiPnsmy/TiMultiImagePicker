@@ -3,6 +3,7 @@ package titutorial.gallerypicker;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
 public class GalleryAdapter extends BaseAdapter {
 
@@ -22,14 +25,20 @@ public class GalleryAdapter extends BaseAdapter {
 	String errorMessageText;
 
 	private boolean isActionMultiplePick;
+	DisplayImageOptions options;
 
 	public GalleryAdapter(Context c, ImageLoader imageLoader, String messageText) {
-		infalter = (LayoutInflater) c
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		infalter = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mContext = c;
 		this.imageLoader = imageLoader;
 		this.errorMessageText = messageText;
         clearCache();
+        
+        options = new DisplayImageOptions.Builder()
+        .showImageOnFail(Utility.resId_no_media)
+        .bitmapConfig(Bitmap.Config.RGB_565)
+        .imageScaleType(ImageScaleType.IN_SAMPLE_INT) 
+        .build();
 	}
 
 	@Override
@@ -114,15 +123,18 @@ public class GalleryAdapter extends BaseAdapter {
 		int selectedItemsLength = getSelected().size();
 			if (data.get(position).isSeleted) {
 				data.get(position).isSeleted = false;
+				//((ViewHolder) v.getTag()).imgQueueMultiSelected.setVisibility(View.GONE);
 			} else {
 				if(limit > -1){
 					if(selectedItemsLength < limit ){
 						data.get(position).isSeleted = true;
+						//((ViewHolder) v.getTag()).imgQueueMultiSelected.setVisibility(View.VISIBLE);
 					} else {
 						Toast.makeText(mContext, errorMessageText, Toast.LENGTH_SHORT).show();
 					}	
 				} else {
 					data.get(position).isSeleted = true;
+					//((ViewHolder) v.getTag()).imgQueueMultiSelected.setVisibility(View.VISIBLE);
 				}
 			}
 
@@ -144,12 +156,15 @@ public class GalleryAdapter extends BaseAdapter {
 			//holder.imgQueueMultiSelected = (ImageView) convertView.findViewById(R.id.imgQueueMultiSelected);
 			holder.imgQueueMultiSelected = (ImageView) convertView.findViewById(Utility.resId_imgQueueMultiSelected);
 
+			//Right now we are using this module only for multiple selection purpose.
+			/*
 			if (isActionMultiplePick) {
 				holder.imgQueueMultiSelected.setVisibility(View.VISIBLE);
 			} else {
 				holder.imgQueueMultiSelected.setVisibility(View.GONE);
 			}
-
+			*/
+			holder.imgQueueMultiSelected.setVisibility(View.VISIBLE);
 			convertView.setTag(holder);
 
 		} else {
@@ -160,14 +175,10 @@ public class GalleryAdapter extends BaseAdapter {
 		try {
             //holder.imgQueue.setImageResource(R.drawable.no_media);
             holder.imgQueue.setImageResource(Utility.resId_no_media);
-			imageLoader.displayImage("file://" + data.get(position).sdcardPath,
-					holder.imgQueue);
+			imageLoader.displayImage("file://" + data.get(position).sdcardPath, holder.imgQueue, options);
 
 			if (isActionMultiplePick) {
-
-				holder.imgQueueMultiSelected
-						.setSelected(data.get(position).isSeleted);
-
+				holder.imgQueueMultiSelected.setSelected(data.get(position).isSeleted);
 			}
 
 		} catch (Exception e) {

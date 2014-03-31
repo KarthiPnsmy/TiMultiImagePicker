@@ -79,6 +79,7 @@ public class CustomGalleryActivity extends Activity {
 		.threadPriority(Thread.NORM_PRIORITY - 2)
 		.memoryCacheSize(1500000) // 1.5 Mb
 		.denyCacheImageMultipleSizesInMemory()
+		.memoryCache(new WeakMemoryCache())
 		.discCacheFileNameGenerator(new Md5FileNameGenerator());
 
         ImageLoaderConfiguration config = builder.build();
